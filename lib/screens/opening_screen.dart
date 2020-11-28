@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/constants_and_widgets/constants.dart';
 import 'package:todo_app/screens/tasks_screen.dart';
 
 class OpeningScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class _OpeningScreenState extends State<OpeningScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
@@ -66,9 +68,8 @@ class _OpeningScreenState extends State<OpeningScreen>
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.of(context).push(_createRoute(controller));
-                    //   Navigator.of(context).pushNamed('/tasks_screen');
                   },
-                  color: Color(0xfffed46c),
+                  color: kYellowishColour,
                   child: Text("Let's Go"),
                 ),
               ),
