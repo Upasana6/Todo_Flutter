@@ -3,10 +3,6 @@ import 'package:todo_app/screens/add_task_screen.dart';
 import 'constants.dart';
 
 class AddTaskButton extends StatelessWidget {
-  const AddTaskButton({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,7 +22,7 @@ class AddTaskButton extends StatelessWidget {
         ),
       ),
       onTap: () {
-        showMyDialog(context);
+        showAddTaskDialog(context: context);
       },
     );
   }

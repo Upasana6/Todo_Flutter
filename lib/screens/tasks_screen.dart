@@ -3,7 +3,8 @@ import 'package:todo_app/constants_and_widgets/add_task_button.dart';
 import 'package:todo_app/constants_and_widgets/constants.dart';
 import 'package:todo_app/constants_and_widgets/task_screen_top_container.dart';
 import 'package:todo_app/constants_and_widgets/task_tile.dart';
-import 'package:todo_app/modal/tasks.dart';
+import 'package:todo_app/modal/task_data.dart';
+import 'package:provider/provider.dart';
 
 class TasksScreen extends StatelessWidget {
   final double tasksDone = 4 / 12;
@@ -20,7 +21,7 @@ class TasksScreen extends StatelessWidget {
             Expanded(
               flex: 12,
               child: Container(
-                margin: EdgeInsets.only(bottom: 10),
+                margin: EdgeInsets.only(bottom: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(30),
@@ -31,20 +32,6 @@ class TasksScreen extends StatelessWidget {
                 child: TaskScreenTopContainer(tasksDone: tasksDone),
               ),
             ),
-            // SizedBox(height: 5),
-            // Expanded(
-            //   flex: 1,
-            //   child: Container(
-            //     decoration: BoxDecoration(a
-
-            //       borderRadius: BorderRadius.only(
-            //         bottomLeft: Radius.circular(30),
-            //         bottomRight: Radius.circular(30),
-            //       ),
-            //       color: kShadowColour.withOpacity(0.3),
-            //     ),
-            //   ),
-            // ),
             Expanded(
               flex: 30,
               child: ListView.builder(
@@ -53,7 +40,7 @@ class TasksScreen extends StatelessWidget {
                     index: itemCount,
                   );
                 },
-                itemCount: tasks.length,
+                itemCount: Provider.of<TaskData>(context).tasks.length,
               ),
             ),
             Expanded(

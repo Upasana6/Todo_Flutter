@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/constants_and_widgets/task_tile.dart';
 
 import 'constants.dart';
 
 class VerticalDividerWidget extends StatelessWidget {
-  const VerticalDividerWidget({
-    Key key,
-    @required this.widget,
-  }) : super(key: key);
-
-  final TaskTile widget;
+  final index;
+  VerticalDividerWidget({this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +17,7 @@ class VerticalDividerWidget extends StatelessWidget {
           height: 90,
           width: 9,
           decoration: BoxDecoration(
-            color: kColoursList[widget.index ?? 1],
+            color: kColoursList[index ?? 1],
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
         ),

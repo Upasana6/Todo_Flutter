@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/constants_and_widgets/constants.dart';
+import 'package:todo_app/modal/task_data.dart';
 
-Future<void> showMyDialog(BuildContext context) async {
+Future<void> showAddTaskDialog({BuildContext context, int index: -1}) async {
+  String _title;
+  String _description;
+
+  if (index != -1) {
+    _title = Provider.of<TaskData>(context, listen: false).tasks[index].title;
+    _description =
+        Provider.of<TaskData>(context, listen: false).tasks[index].description;
+    print('title: $_title, $_description');
+  }
+
   return showDialog<void>(
     context: context,
     // barrierDismissible: true,
@@ -23,6 +35,7 @@ Future<void> showMyDialog(BuildContext context) async {
                 autofocus: true,
                 maxLines: null,
                 decoration: InputDecoration(
+                  // prefixText: _title ?? "no",
                   focusColor: kYellowishColour,
                   hintText: "Title",
                   helperStyle: TextStyle(
@@ -30,6 +43,7 @@ Future<void> showMyDialog(BuildContext context) async {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+                onChanged: (value) => _title = value,
               ),
             ),
             Theme(
@@ -41,6 +55,7 @@ Future<void> showMyDialog(BuildContext context) async {
                 autofocus: true,
                 maxLines: null,
                 decoration: InputDecoration(
+                  // prefixText: _description ?? "",
                   focusColor: kYellowishColour,
                   hintText: "Description",
                   helperStyle: TextStyle(
@@ -48,22 +63,20 @@ Future<void> showMyDialog(BuildContext context) async {
                     fontWeight: FontWeight.w300,
                   ),
                 ),
+                onChanged: (value) => _description = value,
               ),
             ),
           ],
         ),
-        // content: SingleChildScrollView(
-        //   child: ListBody(
-        //     children: <Widget>[
-        //       Text(""),
-        //     ],
-        //   ),
-        // ),
         actions: <Widget>[
           Center(
             child: TextButton(
               child: Text('OK'),
               onPressed: () {
+                Provider.of<TaskData>(context, listen: false).addTask(
+                  title: _title,
+                  description: _description,
+                );
                 Navigator.of(context).pop();
               },
             ),

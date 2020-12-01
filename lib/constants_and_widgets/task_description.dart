@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'task_tile.dart';
-import 'package:todo_app/modal/tasks.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/modal/task_data.dart';
 import 'constants.dart';
 
 class TaskDescription extends StatelessWidget {
-  const TaskDescription({
-    @required this.widget,
-  });
-
-  final TaskTile widget;
+  final int index;
+  TaskDescription({this.index});
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      tasks[widget.index].description ?? "",
+      Provider.of<TaskData>(context, listen: false).tasks[index].description ??
+          "",
       style: kDescriptionTextStyle,
       overflow: TextOverflow.ellipsis,
     );
