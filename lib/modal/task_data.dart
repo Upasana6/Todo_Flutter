@@ -18,4 +18,17 @@ class TaskData extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void updateTask({@required index, @required title, @required description}) {
+    if (index > tasks.length) {
+      // out of bound
+      this.addTask(title: title, description: description);
+    } else if (title == null || description == null) {
+      deleteTask(index: index);
+    } else {
+      tasks[index].title = title;
+      tasks[index].description = description;
+      notifyListeners();
+    }
+  }
 }

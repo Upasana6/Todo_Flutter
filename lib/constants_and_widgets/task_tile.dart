@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/constants_and_widgets/constants.dart';
 import 'package:todo_app/constants_and_widgets/task_title.dart';
 import 'package:todo_app/constants_and_widgets/vertical_divider_widget.dart';
 import 'package:todo_app/constants_and_widgets/task_description.dart';
@@ -17,49 +18,62 @@ class TaskTile extends StatelessWidget {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(
-              Provider.of<TaskData>(context, listen: false).tasks[index].title),
-          elevation: 20,
-          insetPadding: EdgeInsets.all(10),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(Provider.of<TaskData>(context, listen: false)
-                    .tasks[index]
-                    .description),
-              ],
+        return Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: AlertDialog(
+            title: Text(Provider.of<TaskData>(context, listen: false)
+                .tasks[index]
+                .title),
+            elevation: 20,
+            insetPadding: EdgeInsets.all(10),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text(Provider.of<TaskData>(context, listen: false)
+                      .tasks[index]
+                      .description),
+                ],
+              ),
             ),
+            actions: <Widget>[
+              Center(
+                child: TextButton(
+                  child: Text(
+                    "Delete",
+                    style: TextStyle(color: kYellowishColour),
+                  ),
+                  onPressed: () {
+                    Provider.of<TaskData>(context, listen: false)
+                        .deleteTask(index: index);
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+              Center(
+                child: TextButton(
+                  child: Text(
+                    'Edit',
+                    style: TextStyle(color: kYellowishColour),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    showAddTaskDialog(context: context, index: index);
+                  },
+                ),
+              ),
+              Center(
+                child: TextButton(
+                  child: Text(
+                    'OK',
+                    style: TextStyle(color: kYellowishColour),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ],
           ),
-          actions: <Widget>[
-            Center(
-              child: TextButton(
-                child: Text('Delete'),
-                onPressed: () {
-                  Provider.of<TaskData>(context, listen: false)
-                      .deleteTask(index: index);
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-            Center(
-              child: TextButton(
-                child: Text('Edit'),
-                onPressed: () {
-                  Navigator.pop(context);
-                  showAddTaskDialog(context: context, index: index);
-                },
-              ),
-            ),
-            Center(
-              child: TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ),
-          ],
         );
       },
     );
