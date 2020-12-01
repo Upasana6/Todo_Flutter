@@ -123,6 +123,14 @@ class TaskTile extends StatelessWidget {
                     SizedBox(
                       width: 25,
                     ),
+                    Checkbox(
+                      activeColor: kColoursList[index % 5],
+                      value: Provider.of<TaskData>(context).tasks[index].isDone,
+                      onChanged: (value) {
+                        Provider.of<TaskData>(context, listen: false)
+                            .toggleDone(index: index);
+                      },
+                    ),
                   ],
                 ),
               ],

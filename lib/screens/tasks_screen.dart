@@ -7,7 +7,6 @@ import 'package:todo_app/modal/task_data.dart';
 import 'package:provider/provider.dart';
 
 class TasksScreen extends StatelessWidget {
-  final double tasksDone = 4 / 12;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +28,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                   color: kShadowColour,
                 ),
-                child: TaskScreenTopContainer(tasksDone: tasksDone),
+                child: TaskScreenTopContainer(),
               ),
             ),
             Expanded(

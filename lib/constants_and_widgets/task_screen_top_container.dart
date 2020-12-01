@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/modal/task_data.dart';
 
 class TaskScreenTopContainer extends StatelessWidget {
-  const TaskScreenTopContainer({
-    Key key,
-    @required this.tasksDone,
-  }) : super(key: key);
-
-  final double tasksDone;
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -49,7 +44,7 @@ class TaskScreenTopContainer extends StatelessWidget {
                     style: kBoldTextStyle,
                   ),
                   Text(
-                    "4/12",
+                    "${Provider.of<TaskData>(context).tasksDone}/${Provider.of<TaskData>(context).tasks.length}",
                     style: TextStyle(
                       color: kYellowishColour,
                       fontSize: 30,
@@ -64,8 +59,11 @@ class TaskScreenTopContainer extends StatelessWidget {
               LinearProgressIndicator(
                 backgroundColor: kBackgroundColour,
                 valueColor: AlwaysStoppedAnimation<Color>(kYellowishColour),
-                value: tasksDone,
-              ),
+                value: Provider.of<TaskData>(context).tasks.length == 0
+                    ? 1.0
+                    : Provider.of<TaskData>(context).tasksDone /
+                        Provider.of<TaskData>(context).tasks.length,
+              )
             ],
           ),
         ),
