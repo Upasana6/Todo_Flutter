@@ -12,8 +12,6 @@ class TaskTile extends StatelessWidget {
   TaskTile({this.index});
 
   Future<void> _showMyDialog(BuildContext context) async {
-    print(index);
-    print("printed");
     return showDialog<void>(
       context: context,
       barrierDismissible: true,
@@ -21,17 +19,18 @@ class TaskTile extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(30.0),
           child: AlertDialog(
-            title: Text(Provider.of<TaskData>(context, listen: false)
-                .tasks[index]
-                .title),
+            title: Text(
+              Provider.of<TaskData>(context).tasks[index].title ?? "",
+            ),
             elevation: 20,
             insetPadding: EdgeInsets.all(10),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
-                  Text(Provider.of<TaskData>(context, listen: false)
-                      .tasks[index]
-                      .description),
+                  Text(
+                    Provider.of<TaskData>(context).tasks[index].description ??
+                        "",
+                  ),
                 ],
               ),
             ),

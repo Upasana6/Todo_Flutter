@@ -15,6 +15,9 @@ class TaskData extends ChangeNotifier {
 
   void deleteTask({@required int index}) {
     if (index < tasks.length) {
+      if (tasks[index].isDone) {
+        tasksDone--;
+      }
       tasks.removeAt(index);
       notifyListeners();
     }

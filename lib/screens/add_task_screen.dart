@@ -92,6 +92,8 @@ Future<void> showAddTaskDialog({BuildContext context, int index: -1}) async {
                           title: _title,
                           description: _description,
                         );
+                  _controllerDesc.dispose();
+                  _controllerTitle.dispose();
                   Navigator.of(context).pop();
                 },
               ),
