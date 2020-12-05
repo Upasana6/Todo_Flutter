@@ -11,7 +11,8 @@ class TaskTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      Provider.of<TaskData>(context, listen: false).tasks[index].title ?? "",
+      Provider.of<TaskData>(context, listen: false).dbTasks[index]['title'] ??
+          "",
       style: kTitleTextStyle,
       overflow: TextOverflow.ellipsis,
     );

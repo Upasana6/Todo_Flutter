@@ -10,7 +10,8 @@ class TaskDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      Provider.of<TaskData>(context, listen: false).tasks[index].description ??
+      Provider.of<TaskData>(context, listen: false).dbTasks[index]
+              ['description'] ??
           "",
       style: kDescriptionTextStyle,
       overflow: TextOverflow.ellipsis,

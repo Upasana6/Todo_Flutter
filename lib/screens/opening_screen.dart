@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/constants_and_widgets/constants.dart';
+import 'package:todo_app/modal/task_data.dart';
 import 'package:todo_app/screens/tasks_screen.dart';
+import 'package:provider/provider.dart';
 
 class OpeningScreen extends StatefulWidget {
   @override
@@ -17,6 +19,7 @@ class _OpeningScreenState extends State<OpeningScreen>
       vsync: this,
       duration: Duration(seconds: 3),
     );
+
     super.initState();
   }
 

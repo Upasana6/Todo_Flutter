@@ -39,7 +39,7 @@ class TasksScreen extends StatelessWidget {
                     index: itemCount,
                   );
                 },
-                itemCount: Provider.of<TaskData>(context).tasks.length,
+                itemCount: Provider.of<TaskData>(context).dbTasks.length ?? 0,
               ),
             ),
             Expanded(

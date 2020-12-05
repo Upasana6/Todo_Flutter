@@ -19,8 +19,10 @@ class TaskTile extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(30.0),
           child: AlertDialog(
+            clipBehavior: Clip.hardEdge,
+            scrollable: true,
             title: Text(
-              Provider.of<TaskData>(context).tasks[index].title ?? "",
+              Provider.of<TaskData>(context).dbTasks[index]['title'] ?? "",
             ),
             elevation: 20,
             insetPadding: EdgeInsets.all(10),
@@ -28,7 +30,8 @@ class TaskTile extends StatelessWidget {
               child: ListBody(
                 children: <Widget>[
                   Text(
-                    Provider.of<TaskData>(context).tasks[index].description ??
+                    Provider.of<TaskData>(context).dbTasks[index]
+                            ['description'] ??
                         "",
                   ),
                 ],
@@ -124,7 +127,11 @@ class TaskTile extends StatelessWidget {
                     ),
                     Checkbox(
                       activeColor: kColoursList[index % 5],
-                      value: Provider.of<TaskData>(context).tasks[index].isDone,
+                      value: Provider.of<TaskData>(context).dbTasks[index]
+                                  ['isDone'] ==
+                              1
+                          ? true
+                          : false,
                       onChanged: (value) {
                         Provider.of<TaskData>(context, listen: false)
                             .toggleDone(index: index);

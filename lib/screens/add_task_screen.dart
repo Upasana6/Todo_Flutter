@@ -9,10 +9,11 @@ Future<void> showAddTaskDialog({BuildContext context, int index: -1}) async {
   String _description;
 
   if (index != -1) {
-    _title = Provider.of<TaskData>(context, listen: false).tasks[index].title;
-    _description =
-        Provider.of<TaskData>(context, listen: false).tasks[index].description;
-    print('title: $_title, $_description');
+    _title =
+        Provider.of<TaskData>(context, listen: false).dbTasks[index]['title'];
+    _description = Provider.of<TaskData>(context, listen: false).dbTasks[index]
+        ['description'];
+    // print('title: $_title, $_description');
   }
 
   _controllerTitle = TextEditingController(text: _title ?? "");
@@ -92,8 +93,8 @@ Future<void> showAddTaskDialog({BuildContext context, int index: -1}) async {
                           title: _title,
                           description: _description,
                         );
-                  _controllerDesc.dispose();
-                  _controllerTitle.dispose();
+                  // _controllerDesc.dispose();
+                  // _controllerTitle.dispose();
                   Navigator.of(context).pop();
                 },
               ),

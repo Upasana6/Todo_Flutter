@@ -44,7 +44,7 @@ class TaskScreenTopContainer extends StatelessWidget {
                     style: kBoldTextStyle,
                   ),
                   Text(
-                    "${Provider.of<TaskData>(context).tasksDone}/${Provider.of<TaskData>(context).tasks.length}",
+                    "${Provider.of<TaskData>(context).tasksDone}/${Provider.of<TaskData>(context).dbTasks.length}",
                     style: TextStyle(
                       color: kYellowishColour,
                       fontSize: 30,
@@ -59,10 +59,10 @@ class TaskScreenTopContainer extends StatelessWidget {
               LinearProgressIndicator(
                 backgroundColor: kBackgroundColour,
                 valueColor: AlwaysStoppedAnimation<Color>(kYellowishColour),
-                value: Provider.of<TaskData>(context).tasks.length == 0
+                value: Provider.of<TaskData>(context).dbTasks.length == 0
                     ? 1.0
                     : Provider.of<TaskData>(context).tasksDone /
-                        Provider.of<TaskData>(context).tasks.length,
+                        Provider.of<TaskData>(context).dbTasks.length,
               )
             ],
           ),
