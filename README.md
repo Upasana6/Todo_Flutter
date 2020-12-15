@@ -1,3 +1,6 @@
 # Todo_Flutter
 Todo app in Flutter
-![](todoApp.gif)
+
+Below Gif show how the app works!!
+
+![](https://github.com/Upasana6/Todo_Flutter/blob/main/todoApp.GIF)
